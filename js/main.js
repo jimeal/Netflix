@@ -5,4 +5,5 @@ import loginForm from "./login.js";
 document.addEventListener("DOMContentLoaded", () => {
   formBlock();
   loginForm();
-})
+  console.log(process.env.NODE_ENV)
+})  
