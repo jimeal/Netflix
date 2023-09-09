@@ -11,7 +11,7 @@
     @include paddingY(48px);
     @include desktop {
       @include marginY(28px);
-      @include paddingY(58px);
+      padding: 2vh 0 14vh; 
     }
     em {
       font-style: normal;
@@ -23,6 +23,7 @@
     font-size: rem(48px);
     @include desktop {
       font-size: rem(96px);
+      @include marginY(34px)
     }
     span, em {
       display: block;
@@ -31,6 +32,7 @@
   &__description--medium {
     color: $gray200;
     font-size: rem(18px);
+    line-height: 1.5;
     @include desktop {
       font-size: rem(20px);
     }
@@ -42,16 +44,20 @@
     }
   }
   &__description--small {
+    line-height: 1.5;
     color: $gray300;
     font-size: rem(14px);
     @include desktop{
       font-size: rem(16px);
+      @include marginY(24px)
     }
   }
   &__description--xsmall {
+    line-height: 1.5;
     color: $gray400;
     font-size: rem(12px);
     @include desktop{
+      @include marginY(20px);
       font-size: rem(16px);
       font-weight: 700;
     }
@@ -368,7 +374,6 @@
     }
   }
 }
-
 .multi-device{
   @include autoMargin;
   max-width: rem(600px);
@@ -382,5 +387,67 @@
     transform: translate(-50%, -50%);
     max-width: 63%;
     max-height: 47%;
+  }
+}
+
+//자주묻는질문
+.qna-accordion {
+  padding: rem(16px) rem(20px);
+  @include desktop {
+    padding: rem(60px) rem(20px) rem(60px);
+  }
+  .inner {
+    @include desktop {
+      width: rem(1280);
+      @include paddingX(120px);
+    }
+    @include autoMargin;
+    h2 {
+      font-size: rem(32px);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+  }
+  &__item {
+    border-bottom: 4px solid $black;
+    & > div {
+      padding: rem(24px);
+      font-size: rem(18px);
+      background-color: $gray800;
+    }
+    .panel-top {
+      font-size: inherit;
+      transition: background-color ease-in .3s;
+      @include flexbox($direction: row, $justify: space-between, $items: center);
+      .material-symbols-outlined {
+        transform: rotate(0);
+        display: block;
+      }
+      &:hover {
+        background-color: $gray700;
+      }
+    }
+    .panel-body {
+      transition: .3s;
+      height: 0;
+      overflow: hidden;
+      line-height: 1.8;
+      font-size: inherit;
+      @include paddingY(0);
+      box-sizing: border-box;
+    }
+    &.active {
+      .panel-top {
+        .material-symbols-outlined {
+          transform: rotate(-180deg);
+        }
+      }
+      .panel-body {
+        height: auto;
+        overflow: visible;
+        padding: rem(24px);
+      }
+    }
   }
 }
